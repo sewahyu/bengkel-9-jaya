@@ -1,0 +1,864 @@
+// Version: 4.0.0
+type AccessControlState__201339279 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__230067015<Principal, UserRole__91647283>
+  };
+type Alat__407642014 =
+  {
+    id : Id__389469852;
+    jumlahTersedia : Nat;
+    jumlahTotal : Nat;
+    kategori : Text;
+    keterangan : Text;
+    nama : Text
+  };
+type Berita__577783825 =
+  {
+    gambarUrl : Text;
+    id : Id__389469852;
+    judul : Text;
+    ringkasan : Text;
+    sumber : SumberBerita__13529210;
+    tanggal : Text;
+    tautan : Text
+  };
+type Data__44217153<K, V> = {var count : Nat__227979830; kvs : [var ?(K, V)]};
+type Id__148205166 = Id__389469852;
+type Id__306164422 = Id__389469852;
+type Id__358309759 = Id__389469852;
+type Id__384857048 = Id__389469852;
+type Id__389469852 = Nat;
+type Id__426842155 = Id__389469852;
+type Id__436766245 = Id__389469852;
+type Id__698302495 = Id__389469852;
+type Id__898581238 = Id__389469852;
+type Internal__283199666<K, V> =
+  {children : [var ?Node__204828119<K, V>]; data : Data__44217153<K, V>};
+type JadwalUpj__339039320 =
+  {
+    hari : Text;
+    id : Id__389469852;
+    kelas : Text;
+    namaSiswa : Text;
+    tanggal : Text;
+    tugas : Text
+  };
+type JenisMutasiStok__680036100 = Text;
+type JenisNota__727236288 = Text;
+type JenisPeminjaman__878617453 = Text;
+type Lab__1001090275 = Text;
+type Leaf__598469445<K, V> = {data : Data__44217153<K, V>};
+type Map__230067015<K, V> = Map__405889023<K, V>;
+type Map__405889023<K, V> = Map__603270868<K, V>;
+type Map__603270868<K, V> =
+  {var root : Node__204828119<K, V>; var size : Nat__227979830};
+type MutasiStok__689373305 =
+  {
+    id : Id__389469852;
+    jenis : JenisMutasiStok__680036100;
+    jumlah : Nat;
+    keterangan : Text;
+    sparepartId : Id__389469852;
+    waktu : Timestamp__301639476
+  };
+type Nat__227979830 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__470467278 =
+  {
+    alat :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jumlahTersedia : Nat;
+                        jumlahTotal : Nat;
+                        kategori : Text;
+                        keterangan : Text;
+                        nama : Text
+                      }>;
+    berita :
+      Map__230067015<Nat,
+                      {
+                        gambarUrl : Text;
+                        id : Nat;
+                        judul : Text;
+                        ringkasan : Text;
+                        sumber : Text;
+                        tanggal : Text;
+                        tautan : Text
+                      }>;
+    jadwal :
+      Map__230067015<Nat,
+                      {
+                        hari : Text;
+                        id : Nat;
+                        kelas : Text;
+                        namaSiswa : Text;
+                        tanggal : Text;
+                        tugas : Text
+                      }>;
+    mutasiStok :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        jumlah : Nat;
+                        keterangan : Text;
+                        sparepartId : Nat;
+                        waktu : Int
+                      }>;
+    nota :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        kategori : Text;
+                        keterangan : Text;
+                        nominal : Nat;
+                        tanggal : Text
+                      }>;
+    peminjaman :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        jumlah : Nat;
+                        kelas : Text;
+                        keperluan : Text;
+                        kondisiKembali : ?Text;
+                        kontak : ?Text;
+                        namaPeminjam : Text;
+                        namaTarget : Text;
+                        status : Text;
+                        sumber : Text;
+                        tanggalKembali : ?Text;
+                        tanggalPinjam : Text;
+                        targetId : Nat
+                      }>;
+    peminjamanLab :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jamMulai : Text;
+                        jamSelesai : Text;
+                        kelas : Text;
+                        keperluan : Text;
+                        kontak : ?Text;
+                        lab : Text;
+                        namaPeminjam : Text;
+                        status : Text;
+                        tanggal : Text;
+                        waktuDibuat : Int
+                      }>;
+    pengaturan : {var feedUrl : Text};
+    sessions : Map__230067015<Principal, {loginAt : Int; username : Text}>;
+    sparepart :
+      Map__230067015<Nat,
+                      {
+                        ambangMinimum : Nat;
+                        id : Nat;
+                        jumlahStok : Nat;
+                        kategori : Text;
+                        kode : Text;
+                        nama : Text;
+                        satuan : Text
+                      }>;
+    state :
+      {
+        var nextAlatId : Nat;
+        var nextBeritaId : Nat;
+        var nextJadwalId : Nat;
+        var nextMutasiId : Nat;
+        var nextNotaId : Nat;
+        var nextPeminjamanId : Nat;
+        var nextPeminjamanLabId : Nat;
+        var nextSparepartId : Nat;
+        var nextTrainerId : Nat
+      };
+    trainer :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jumlahTersedia : Nat;
+                        jumlahTotal : Nat;
+                        kategori : Text;
+                        keterangan : Text;
+                        nama : Text
+                      }>
+  };
+type NewActor__592872083 =
+  {
+    alat :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jumlahTersedia : Nat;
+                        jumlahTotal : Nat;
+                        kategori : Text;
+                        keterangan : Text;
+                        nama : Text
+                      }>;
+    berita :
+      Map__230067015<Nat,
+                      {
+                        gambarUrl : Text;
+                        id : Nat;
+                        judul : Text;
+                        ringkasan : Text;
+                        sumber : Text;
+                        tanggal : Text;
+                        tautan : Text
+                      }>;
+    jadwal :
+      Map__230067015<Nat,
+                      {
+                        hari : Text;
+                        id : Nat;
+                        kelas : Text;
+                        namaSiswa : Text;
+                        tanggal : Text;
+                        tugas : Text
+                      }>;
+    mutasiStok :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        jumlah : Nat;
+                        keterangan : Text;
+                        sparepartId : Nat;
+                        waktu : Int
+                      }>;
+    nota :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        kategori : Text;
+                        keterangan : Text;
+                        nominal : Nat;
+                        tanggal : Text
+                      }>;
+    peminjaman :
+      Map__230067015<Nat,
+                      {
+                        alatId : Nat;
+                        id : Nat;
+                        jumlah : Nat;
+                        kelas : Text;
+                        keperluan : Text;
+                        kondisiKembali : ?Text;
+                        kontak : ?Text;
+                        namaAlat : Text;
+                        namaPeminjam : Text;
+                        status : Text;
+                        sumber : Text;
+                        tanggalKembali : ?Text;
+                        tanggalPinjam : Text
+                      }>;
+    peminjamanLab :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jamMulai : Text;
+                        jamSelesai : Text;
+                        kelas : Text;
+                        keperluan : Text;
+                        kontak : ?Text;
+                        lab : Text;
+                        namaPeminjam : Text;
+                        status : Text;
+                        tanggal : Text;
+                        waktuDibuat : Int
+                      }>;
+    pengaturan : {var feedUrl : Text};
+    sessions : Map__230067015<Principal, {loginAt : Int; username : Text}>;
+    sparepart :
+      Map__230067015<Nat,
+                      {
+                        ambangMinimum : Nat;
+                        id : Nat;
+                        jumlahStok : Nat;
+                        kategori : Text;
+                        kode : Text;
+                        nama : Text;
+                        satuan : Text
+                      }>;
+    state :
+      {
+        var nextAlatId : Nat;
+        var nextBeritaId : Nat;
+        var nextJadwalId : Nat;
+        var nextMutasiId : Nat;
+        var nextNotaId : Nat;
+        var nextPeminjamanId : Nat;
+        var nextPeminjamanLabId : Nat;
+        var nextSparepartId : Nat
+      }
+  };
+type NewActor__756050636 =
+  {
+    alat :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jumlahTersedia : Nat;
+                        jumlahTotal : Nat;
+                        kategori : Text;
+                        keterangan : Text;
+                        nama : Text
+                      }>;
+    jadwal :
+      Map__230067015<Nat,
+                      {
+                        hari : Text;
+                        id : Nat;
+                        kelas : Text;
+                        namaSiswa : Text;
+                        tanggal : Text;
+                        tugas : Text
+                      }>;
+    mutasiStok :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        jumlah : Nat;
+                        keterangan : Text;
+                        sparepartId : Nat;
+                        waktu : Int
+                      }>;
+    nota :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        kategori : Text;
+                        keterangan : Text;
+                        nominal : Nat;
+                        tanggal : Text
+                      }>;
+    peminjaman :
+      Map__230067015<Nat,
+                      {
+                        alatId : Nat;
+                        id : Nat;
+                        jumlah : Nat;
+                        kelas : Text;
+                        keperluan : Text;
+                        kondisiKembali : ?Text;
+                        namaAlat : Text;
+                        namaPeminjam : Text;
+                        status : Text;
+                        tanggalKembali : ?Text;
+                        tanggalPinjam : Text
+                      }>;
+    sessions : Map__230067015<Principal, {loginAt : Int; username : Text}>;
+    sparepart :
+      Map__230067015<Nat,
+                      {
+                        ambangMinimum : Nat;
+                        id : Nat;
+                        jumlahStok : Nat;
+                        kategori : Text;
+                        kode : Text;
+                        nama : Text;
+                        satuan : Text
+                      }>;
+    state :
+      {
+        var nextAlatId : Nat;
+        var nextJadwalId : Nat;
+        var nextMutasiId : Nat;
+        var nextNotaId : Nat;
+        var nextPeminjamanId : Nat;
+        var nextSparepartId : Nat
+      }
+  };
+type NewActor__857178465 =
+  {
+    accessControlState : AccessControlState__201339279;
+    alat :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jumlahTersedia : Nat;
+                        jumlahTotal : Nat;
+                        kategori : Text;
+                        keterangan : Text;
+                        nama : Text
+                      }>;
+    jadwal :
+      Map__230067015<Nat,
+                      {
+                        hari : Text;
+                        id : Nat;
+                        kelas : Text;
+                        namaSiswa : Text;
+                        tanggal : Text;
+                        tugas : Text
+                      }>;
+    mutasiStok :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        jumlah : Nat;
+                        keterangan : Text;
+                        sparepartId : Nat;
+                        waktu : Int
+                      }>;
+    nota :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        kategori : Text;
+                        keterangan : Text;
+                        nominal : Nat;
+                        tanggal : Text
+                      }>;
+    peminjaman :
+      Map__230067015<Nat,
+                      {
+                        alatId : Nat;
+                        id : Nat;
+                        jumlah : Nat;
+                        kelas : Text;
+                        keperluan : Text;
+                        kondisiKembali : ?Text;
+                        namaAlat : Text;
+                        namaPeminjam : Text;
+                        status : Text;
+                        tanggalKembali : ?Text;
+                        tanggalPinjam : Text
+                      }>;
+    sparepart :
+      Map__230067015<Nat,
+                      {
+                        ambangMinimum : Nat;
+                        id : Nat;
+                        jumlahStok : Nat;
+                        kategori : Text;
+                        kode : Text;
+                        nama : Text;
+                        satuan : Text
+                      }>;
+    state :
+      {
+        var nextAlatId : Nat;
+        var nextJadwalId : Nat;
+        var nextMutasiId : Nat;
+        var nextNotaId : Nat;
+        var nextPeminjamanId : Nat;
+        var nextSparepartId : Nat
+      }
+  };
+type Node__204828119<K, V> =
+  {#internal : Internal__283199666<K, V>; #leaf : Leaf__598469445<K, V>};
+type Nota__966366611 =
+  {
+    id : Id__389469852;
+    jenis : JenisNota__727236288;
+    kategori : Text;
+    keterangan : Text;
+    nominal : Nat;
+    tanggal : Text
+  };
+type OldActor__281766694 =
+  {
+    accessControlState : AccessControlState__201339279;
+    alat :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jumlahTersedia : Nat;
+                        jumlahTotal : Nat;
+                        kategori : Text;
+                        keterangan : Text;
+                        nama : Text
+                      }>;
+    jadwal :
+      Map__230067015<Nat,
+                      {
+                        hari : Text;
+                        id : Nat;
+                        kelas : Text;
+                        namaSiswa : Text;
+                        tanggal : Text;
+                        tugas : Text
+                      }>;
+    mutasiStok :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        jumlah : Nat;
+                        keterangan : Text;
+                        sparepartId : Nat;
+                        waktu : Int
+                      }>;
+    nota :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        kategori : Text;
+                        keterangan : Text;
+                        nominal : Nat;
+                        tanggal : Text
+                      }>;
+    peminjaman :
+      Map__230067015<Nat,
+                      {
+                        alatId : Nat;
+                        id : Nat;
+                        jumlah : Nat;
+                        kelas : Text;
+                        keperluan : Text;
+                        kondisiKembali : ?Text;
+                        namaAlat : Text;
+                        namaPeminjam : Text;
+                        status : Text;
+                        tanggalKembali : ?Text;
+                        tanggalPinjam : Text
+                      }>;
+    sparepart :
+      Map__230067015<Nat,
+                      {
+                        ambangMinimum : Nat;
+                        id : Nat;
+                        jumlahStok : Nat;
+                        kategori : Text;
+                        kode : Text;
+                        nama : Text;
+                        satuan : Text
+                      }>;
+    state :
+      {
+        var nextAlatId : Nat;
+        var nextJadwalId : Nat;
+        var nextMutasiId : Nat;
+        var nextNotaId : Nat;
+        var nextPeminjamanId : Nat;
+        var nextSparepartId : Nat
+      }
+  };
+type OldActor__481156272 = {};
+type OldActor__924191747 =
+  {
+    alat :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jumlahTersedia : Nat;
+                        jumlahTotal : Nat;
+                        kategori : Text;
+                        keterangan : Text;
+                        nama : Text
+                      }>;
+    jadwal :
+      Map__230067015<Nat,
+                      {
+                        hari : Text;
+                        id : Nat;
+                        kelas : Text;
+                        namaSiswa : Text;
+                        tanggal : Text;
+                        tugas : Text
+                      }>;
+    mutasiStok :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        jumlah : Nat;
+                        keterangan : Text;
+                        sparepartId : Nat;
+                        waktu : Int
+                      }>;
+    nota :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        kategori : Text;
+                        keterangan : Text;
+                        nominal : Nat;
+                        tanggal : Text
+                      }>;
+    peminjaman :
+      Map__230067015<Nat,
+                      {
+                        alatId : Nat;
+                        id : Nat;
+                        jumlah : Nat;
+                        kelas : Text;
+                        keperluan : Text;
+                        kondisiKembali : ?Text;
+                        namaAlat : Text;
+                        namaPeminjam : Text;
+                        status : Text;
+                        tanggalKembali : ?Text;
+                        tanggalPinjam : Text
+                      }>;
+    sessions : Map__230067015<Principal, {loginAt : Int; username : Text}>;
+    sparepart :
+      Map__230067015<Nat,
+                      {
+                        ambangMinimum : Nat;
+                        id : Nat;
+                        jumlahStok : Nat;
+                        kategori : Text;
+                        kode : Text;
+                        nama : Text;
+                        satuan : Text
+                      }>;
+    state :
+      {
+        var nextAlatId : Nat;
+        var nextJadwalId : Nat;
+        var nextMutasiId : Nat;
+        var nextNotaId : Nat;
+        var nextPeminjamanId : Nat;
+        var nextSparepartId : Nat
+      }
+  };
+type OldActor__984632701 =
+  {
+    alat :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jumlahTersedia : Nat;
+                        jumlahTotal : Nat;
+                        kategori : Text;
+                        keterangan : Text;
+                        nama : Text
+                      }>;
+    berita :
+      Map__230067015<Nat,
+                      {
+                        gambarUrl : Text;
+                        id : Nat;
+                        judul : Text;
+                        ringkasan : Text;
+                        sumber : Text;
+                        tanggal : Text;
+                        tautan : Text
+                      }>;
+    jadwal :
+      Map__230067015<Nat,
+                      {
+                        hari : Text;
+                        id : Nat;
+                        kelas : Text;
+                        namaSiswa : Text;
+                        tanggal : Text;
+                        tugas : Text
+                      }>;
+    mutasiStok :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        jumlah : Nat;
+                        keterangan : Text;
+                        sparepartId : Nat;
+                        waktu : Int
+                      }>;
+    nota :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jenis : Text;
+                        kategori : Text;
+                        keterangan : Text;
+                        nominal : Nat;
+                        tanggal : Text
+                      }>;
+    peminjaman :
+      Map__230067015<Nat,
+                      {
+                        alatId : Nat;
+                        id : Nat;
+                        jumlah : Nat;
+                        kelas : Text;
+                        keperluan : Text;
+                        kondisiKembali : ?Text;
+                        kontak : ?Text;
+                        namaAlat : Text;
+                        namaPeminjam : Text;
+                        status : Text;
+                        sumber : Text;
+                        tanggalKembali : ?Text;
+                        tanggalPinjam : Text
+                      }>;
+    peminjamanLab :
+      Map__230067015<Nat,
+                      {
+                        id : Nat;
+                        jamMulai : Text;
+                        jamSelesai : Text;
+                        kelas : Text;
+                        keperluan : Text;
+                        kontak : ?Text;
+                        lab : Text;
+                        namaPeminjam : Text;
+                        status : Text;
+                        tanggal : Text;
+                        waktuDibuat : Int
+                      }>;
+    pengaturan : {var feedUrl : Text};
+    sessions : Map__230067015<Principal, {loginAt : Int; username : Text}>;
+    sparepart :
+      Map__230067015<Nat,
+                      {
+                        ambangMinimum : Nat;
+                        id : Nat;
+                        jumlahStok : Nat;
+                        kategori : Text;
+                        kode : Text;
+                        nama : Text;
+                        satuan : Text
+                      }>;
+    state :
+      {
+        var nextAlatId : Nat;
+        var nextBeritaId : Nat;
+        var nextJadwalId : Nat;
+        var nextMutasiId : Nat;
+        var nextNotaId : Nat;
+        var nextPeminjamanId : Nat;
+        var nextPeminjamanLabId : Nat;
+        var nextSparepartId : Nat
+      }
+  };
+type PeminjamanLab__1002517862 =
+  {
+    id : Id__389469852;
+    jamMulai : Text;
+    jamSelesai : Text;
+    kelas : Text;
+    keperluan : Text;
+    kontak : ?Text;
+    lab : Lab__1001090275;
+    namaPeminjam : Text;
+    status : StatusPeminjamanLab__390504406;
+    tanggal : Text;
+    waktuDibuat : Timestamp__301639476
+  };
+type Peminjaman__989790830 =
+  {
+    id : Id__389469852;
+    jenis : JenisPeminjaman__878617453;
+    jumlah : Nat;
+    kelas : Text;
+    keperluan : Text;
+    kondisiKembali : ?Text;
+    kontak : ?Text;
+    namaPeminjam : Text;
+    namaTarget : Text;
+    status : StatusPeminjaman__901692322;
+    sumber : SumberPeminjaman__519455448;
+    tanggalKembali : ?Text;
+    tanggalPinjam : Text;
+    targetId : Id__389469852
+  };
+type Session__913247207 = {loginAt : Int; username : Text};
+type Sparepart__940354183 =
+  {
+    ambangMinimum : Nat;
+    id : Id__389469852;
+    jumlahStok : Nat;
+    kategori : Text;
+    kode : Text;
+    nama : Text;
+    satuan : Text
+  };
+type StatusPeminjamanLab__390504406 = Text;
+type StatusPeminjaman__901692322 = Text;
+type SumberBerita__13529210 = Text;
+type SumberPeminjaman__519455448 = Text;
+type Timestamp__301639476 = Int;
+type Trainer__479878090 =
+  {
+    id : Id__389469852;
+    jumlahTersedia : Nat;
+    jumlahTotal : Nat;
+    kategori : Text;
+    keterangan : Text;
+    nama : Text
+  };
+type UserRole__91647283 = {#admin; #guest; #user};
+{
+  "20260924_020000" : (_old : OldActor__481156272) -> NewActor__857178465;
+  "20261012_000000" : (old : OldActor__281766694) -> NewActor__756050636;
+  "20261019_000000" : (old : OldActor__924191747) -> NewActor__592872083;
+  "20261019_120000" : (old : OldActor__984632701) -> NewActor__470467278
+}
+actor  {
+  stable alat :
+    {
+      var root : Node__204828119<Id__426842155, Alat__407642014>;
+      var size : Nat__227979830
+    };
+  stable berita :
+    {
+      var root : Node__204828119<Id__698302495, Berita__577783825>;
+      var size : Nat__227979830
+    };
+  stable jadwal :
+    {
+      var root : Node__204828119<Id__358309759, JadwalUpj__339039320>;
+      var size : Nat__227979830
+    };
+  stable mutasiStok :
+    {
+      var root : Node__204828119<Id__306164422, MutasiStok__689373305>;
+      var size : Nat__227979830
+    };
+  stable nota :
+    {
+      var root : Node__204828119<Id__148205166, Nota__966366611>;
+      var size : Nat__227979830
+    };
+  stable peminjaman :
+    {
+      var root : Node__204828119<Id__436766245, Peminjaman__989790830>;
+      var size : Nat__227979830
+    };
+  stable peminjamanLab :
+    {
+      var root : Node__204828119<Id__384857048, PeminjamanLab__1002517862>;
+      var size : Nat__227979830
+    };
+  stable pengaturan : {var feedUrl : Text};
+  stable sessions :
+    {
+      var root : Node__204828119<Principal, Session__913247207>;
+      var size : Nat__227979830
+    };
+  stable sparepart :
+    {
+      var root : Node__204828119<Id__306164422, Sparepart__940354183>;
+      var size : Nat__227979830
+    };
+  stable state :
+    {
+      var nextAlatId : Nat;
+      var nextBeritaId : Nat;
+      var nextJadwalId : Nat;
+      var nextMutasiId : Nat;
+      var nextNotaId : Nat;
+      var nextPeminjamanId : Nat;
+      var nextPeminjamanLabId : Nat;
+      var nextSparepartId : Nat;
+      var nextTrainerId : Nat
+    };
+  stable trainer :
+    {
+      var root : Node__204828119<Id__898581238, Trainer__479878090>;
+      var size : Nat__227979830
+    }
+};

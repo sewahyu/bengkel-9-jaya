@@ -1,0 +1,258 @@
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type Trainer = 
+ record {
+   id: Id;
+   jumlahTersedia: nat;
+   jumlahTotal: nat;
+   kategori: text;
+   keterangan: text;
+   nama: text;
+ };
+type Timestamp = int;
+type SumberPeminjaman = text;
+type SumberBerita = text;
+type StatusPeminjamanLab = text;
+type StatusPeminjaman = text;
+type Sparepart = 
+ record {
+   ambangMinimum: nat;
+   id: Id;
+   jumlahStok: nat;
+   kategori: text;
+   kode: text;
+   nama: text;
+   satuan: text;
+ };
+type Session = 
+ record {
+   loginAt: int;
+   username: text;
+ };
+type RingkasanKeuangan = 
+ record {
+   saldo: int;
+   totalKeluar: nat;
+   totalMasuk: nat;
+ };
+type RingkasanKategori = 
+ record {
+   jumlahTersedia: nat;
+   jumlahTotal: nat;
+   kategori: text;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type PeminjamanLab = 
+ record {
+   id: Id;
+   jamMulai: text;
+   jamSelesai: text;
+   kelas: text;
+   keperluan: text;
+   kontak: opt text;
+   lab: Lab;
+   namaPeminjam: text;
+   status: StatusPeminjamanLab;
+   tanggal: text;
+   waktuDibuat: Timestamp;
+ };
+type Peminjaman = 
+ record {
+   id: Id;
+   jenis: JenisPeminjaman;
+   jumlah: nat;
+   kelas: text;
+   keperluan: text;
+   kondisiKembali: opt text;
+   kontak: opt text;
+   namaPeminjam: text;
+   namaTarget: text;
+   status: StatusPeminjaman;
+   sumber: SumberPeminjaman;
+   tanggalKembali: opt text;
+   tanggalPinjam: text;
+   targetId: Id;
+ };
+type Nota = 
+ record {
+   id: Id;
+   jenis: JenisNota;
+   kategori: text;
+   keterangan: text;
+   nominal: nat;
+   tanggal: text;
+ };
+type MutasiStok = 
+ record {
+   id: Id;
+   jenis: JenisMutasiStok;
+   jumlah: nat;
+   keterangan: text;
+   sparepartId: Id;
+   waktu: Timestamp;
+ };
+type LoginResult = 
+ variant {
+   invalidCredentials;
+   ok: Session;
+ };
+type Lab = text;
+type JenisPeminjaman = text;
+type JenisNota = text;
+type JenisMutasiStok = text;
+type JadwalUpj = 
+ record {
+   hari: text;
+   id: Id;
+   kelas: text;
+   namaSiswa: text;
+   tanggal: text;
+   tugas: text;
+ };
+type Id = nat;
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type Berita = 
+ record {
+   gambarUrl: text;
+   id: Id;
+   judul: text;
+   ringkasan: text;
+   sumber: SumberBerita;
+   tanggal: text;
+   tautan: text;
+ };
+type Alat = 
+ record {
+   id: Id;
+   jumlahTersedia: nat;
+   jumlahTotal: nat;
+   kategori: text;
+   keterangan: text;
+   nama: text;
+ };
+service : {
+  addAlat: (nama: text, kategori: text, jumlahTotal: nat, keterangan:
+   text) -> (Alat);
+  /// Admin: menambah berita manual.
+  addBerita: (judul: text, ringkasan: text, gambarUrl: text, tautan: 
+   text, tanggal: text) -> (opt Berita);
+  addJadwal: (hari: text, tanggal: text, namaSiswa: text, kelas: text, tugas:
+   text) -> (JadwalUpj);
+  addNota: (tanggal: text, keterangan: text, jenis: JenisNota, kategori:
+   text, nominal: nat) -> (Nota);
+  /// Admin: menambah data peminjaman lab secara langsung.
+  addPeminjamanLab: (lab: Lab, namaPeminjam: text, kelas: text, kontak: 
+   text, tanggal: text, jamMulai: text, jamSelesai: text, keperluan: 
+   text, status: StatusPeminjamanLab) -> (opt PeminjamanLab);
+  addSparepart: (nama: text, kode: text, kategori: text, jumlahStok: 
+   nat, satuan: text, ambangMinimum: nat) -> (Sparepart);
+  addTrainer: (nama: text, kategori: text, jumlahTotal: nat, keterangan:
+   text) -> (Trainer);
+  /// Publik: pengunjung mengajukan permintaan peminjaman Alat tanpa login.
+  /// Hanya untuk Alat — tidak ada jalur anonim untuk Trainer.
+  ajukanPeminjamanAlat: (targetId: Id, namaPeminjam: text, kelas: text,
+   jumlah: nat, tanggalPinjam: text, keperluan: text, kontak: text) ->
+   (opt Peminjaman);
+  /// Publik: pengunjung mengajukan peminjaman lab tanpa login.
+  ajukanPeminjamanLab: (lab: Lab, namaPeminjam: text, kelas: text, kontak:
+   text, tanggal: text, jamMulai: text, jamSelesai: text, keperluan: 
+   text) -> (opt PeminjamanLab);
+  catatMutasiStok: (sparepartId: Id, jenis: JenisMutasiStok, jumlah: 
+   nat, keterangan: text) -> (opt MutasiStok);
+  /// Admin: mencatat peminjaman Alat; mengurangi stok alat.
+  catatPeminjamanAlat: (targetId: Id, namaPeminjam: text, kelas: text,
+   jumlah: nat, tanggalPinjam: text, keperluan: text) -> (opt Peminjaman);
+  /// Admin: mencatat peminjaman Trainer; mengurangi stok unit Trainer.
+  catatPeminjamanTrainer: (targetId: Id, namaPeminjam: text, kelas: text,
+   jumlah: nat, tanggalPinjam: text, keperluan: text) -> (opt Peminjaman);
+  /// Admin: mencatat pengembalian; mengembalikan stok inventaris terkait.
+  catatPengembalian: (id: Id, tanggalKembali: text, kondisiKembali: text) ->
+   (opt Peminjaman);
+  deleteAlat: (id: Id) -> (bool);
+  /// Admin: menghapus berita manual.
+  deleteBerita: (id: Id) -> (bool);
+  deleteJadwal: (id: Id) -> (bool);
+  deleteNota: (id: Id) -> (bool);
+  /// Admin: menghapus data peminjaman lab.
+  deletePeminjamanLab: (id: Id) -> (bool);
+  deleteSparepart: (id: Id) -> (bool);
+  deleteTrainer: (id: Id) -> (bool);
+  execute: (qJson: text) -> (Result) query;
+  getAlat: (id: Id) -> (opt Alat) query;
+  getApiDoc: () -> (text) query;
+  /// Publik: detail satu berita.
+  getBerita: (id: Id) -> (opt Berita) query;
+  /// Publik: URL feed Instagram yang ditempel admin (kosong bila belum diatur).
+  getFeedUrl: () -> (text) query;
+  getJadwal: (id: Id) -> (opt JadwalUpj) query;
+  getNota: (id: Id) -> (opt Nota) query;
+  getPeminjaman: (id: Id) -> (opt Peminjaman) query;
+  /// Publik: detail satu peminjaman lab.
+  getPeminjamanLab: (id: Id) -> (opt PeminjamanLab) query;
+  /// Mengembalikan sesi pemanggil, atau `null` bila belum login.
+  getSession: () -> (opt Session) query;
+  getSparepart: (id: Id) -> (opt Sparepart) query;
+  getTrainer: (id: Id) -> (opt Trainer) query;
+  /// `true` bila pemanggil sudah login sebagai admin.
+  isCallerAdmin: () -> (bool) query;
+  listAlat: () -> (vec Alat) query;
+  /// Publik: seluruh berita manual yang diisi admin.
+  listBerita: () -> (vec Berita) query;
+  listJadwal: () -> (vec JadwalUpj) query;
+  listMutasiStok: (sparepartId: opt Id) -> (vec MutasiStok) query;
+  listNota: (jenis: opt JenisNota, dariTanggal: opt text, sampaiTanggal:
+   opt text) -> (vec Nota) query;
+  listPeminjaman: (jenis: opt JenisPeminjaman, status: opt StatusPeminjaman,
+   cari: opt text) -> (vec Peminjaman) query;
+  /// Publik: seluruh jadwal peminjaman lab, dapat difilter per lab.
+  listPeminjamanLab: (lab: opt Lab) -> (vec PeminjamanLab) query;
+  listSparepart: () -> (vec Sparepart) query;
+  listStokMenipis: () -> (vec Sparepart) query;
+  listTrainer: () -> (vec Trainer) query;
+  /// Memverifikasi kredensial akun bawaan dan memulai sesi untuk pemanggil.
+  login: (username: text, password: text) -> (LoginResult);
+  /// Mengakhiri sesi pemanggil.
+  logout: () -> ();
+  ringkasanAlatPerKategori: () -> (vec RingkasanKategori) query;
+  ringkasanKeuangan: () -> (RingkasanKeuangan) query;
+  ringkasanTrainerPerKategori: () -> (vec RingkasanKategori) query;
+  schema: () -> (text) query;
+  /// Admin: menyimpan URL feed publik Instagram.
+  setFeedUrl: (url: text) -> ();
+  /// Admin: menyetujui permintaan pengunjung; mengurangi stok inventaris terkait.
+  setujuiPeminjaman: (id: Id) -> (opt Peminjaman);
+  /// Admin: menolak permintaan pengunjung tanpa mengubah stok.
+  tolakPeminjaman: (id: Id) -> (opt Peminjaman);
+  updateAlat: (id: Id, nama: text, kategori: text, jumlahTotal: nat,
+   keterangan: text) -> (opt Alat);
+  /// Admin: mengubah berita manual.
+  updateBerita: (id: Id, judul: text, ringkasan: text, gambarUrl: text,
+   tautan: text, tanggal: text) -> (opt Berita);
+  updateJadwal: (id: Id, hari: text, tanggal: text, namaSiswa: text, kelas:
+   text, tugas: text) -> (opt JadwalUpj);
+  updateNota: (id: Id, tanggal: text, keterangan: text, jenis: JenisNota,
+   kategori: text, nominal: nat) -> (opt Nota);
+  /// Admin: mengubah data peminjaman lab.
+  updatePeminjamanLab: (id: Id, lab: Lab, namaPeminjam: text, kelas: 
+   text, kontak: text, tanggal: text, jamMulai: text, jamSelesai: text,
+   keperluan: text, status: StatusPeminjamanLab) -> (opt PeminjamanLab);
+  updateSparepart: (id: Id, nama: text, kode: text, kategori: text, satuan:
+   text, ambangMinimum: nat) -> (opt Sparepart);
+  updateTrainer: (id: Id, nama: text, kategori: text, jumlahTotal: nat,
+   keterangan: text) -> (opt Trainer);
+}

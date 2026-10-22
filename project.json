@@ -1,0 +1,19 @@
+{
+  "overview": "Aplikasi manajemen bengkel/lab SMKN 9 Malang dengan inventaris Trainer dan Alat yang terpisah, peminjaman mandiri untuk Alat, serta pengelolaan admin.",
+  "features": [
+    "Daftar Trainer dan Alat yang terpisah dan dapat dilihat pengunjung umum",
+    "Pencarian dan filter kategori pada kedua inventaris",
+    "Pengajuan peminjaman Alat secara mandiri tanpa login",
+    "Pengelolaan data Trainer dan Alat oleh admin",
+    "Pencatatan peminjaman dan pengembalian oleh admin",
+    "Beranda, jadwal UPJ, sparepart, peminjaman lab, dan berita"
+  ],
+  "category": "inventory-management",
+  "tags": [
+    "inventory",
+    "workshop",
+    "education",
+    "indonesian"
+  ],
+  "last_updated": "2026-10-19T09:29:40.403Z"
+}
